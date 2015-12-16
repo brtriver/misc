@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script>
+        var zgokad = function(adId, frameId, width, height){
+            var pc = 'pc';
+            var sp = 'sp';
+            
+            var ua = navigator.userAgent.toLowerCase();
+            var device = pc;
+            if ((ua.indexOf('iphone') !== -1) || (ua.indexOf('android') !== -1) || (ua.indexOf('mobile') !== -1)) {
+                device = sp;
+            }
+
+            window.document.addEventListener('DOMContentLoaded', function() {
+                if (device === sp) {
+                    var iframe = document.createElement('iframe');
+                    iframe.setAttribute("style", "border:none;padding:0;margin:0;");
+                    iframe.setAttribute("id", "adiframe_" + frameId);
+                    iframe.setAttribute("width", width);
+                    iframe.setAttribute("height", height);
+                    iframe.setAttribute("allowtransparency", "false");
+                    iframe.setAttribute("hspace", "0");
+                    iframe.setAttribute("vspace", "0");
+                    iframe.setAttribute("frameborder", "0");
+                    iframe.setAttribute("scrolling", "no");
+                    console.log(self.name);
+                    var ad = document.getElementById(adId);
+                    ad.innerText = '';
+                    ad.appendChild(iframe);
+                    var doc = frames[frames.length - 1].document;
+                    doc.open();
+                    doc.write('<script type="text/javascript" src="https://j.zucks.net.zimg.jp/j?f=' + frameId + '"><\/script>');
+                    doc.close();
+                }
+            });
+        }
+        </script>
+    </head>
+    <body>
+
+        <h2>スマホのときだけ広告表示</h2>
+        <div id="ad1">
+            <!-- zgokad(表示させたい要素のID, 枠ID, 枠の幅, 枠の高さ) --> 
+            <script>zgokad("ad1",70552,320,50);</script>
+            ad1用 PCからのアクセスなので広告が表示されずに、このメッセージが見える
+        </div>
+
+        <div id="ad2">
+            <script>zgokad("ad2",70552,320,50);</script>
+            ad2用 PCからのアクセスなので広告が表示されずに、このメッセージが見える
+        </div>
+    </body>
+</html>
