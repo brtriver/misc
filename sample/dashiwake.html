@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script>
+        (function(w){
+            var pc = 'pc';
+            var sp = 'sp';
+
+            var ua = navigator.userAgent.toLowerCase();
+            var device = pc;
+            if ((ua.indexOf('iphone') !== -1) || (ua.indexOf('android') !== -1) || (ua.indexOf('mobile') !== -1)) {
+                device = sp;
+            }
+            w.document.addEventListener('DOMContentLoaded', function() {
+                var nodeList = w.document.querySelectorAll('[data-dashiwake]');
+                Array.prototype.forEach.call(nodeList, function(node) {
+                    if (node.getAttribute('data-dashiwake') !== device) {
+                        node.parentNode.removeChild(node);
+                        // 表示を隠すだけなら display=none とか
+                        // node.style.display = 'none';
+                    }
+                });
+            });
+            
+        }(window));
+        </script>
+    </head>
+    <body>
+        <h2>PCとスマホ(PC以外)で表示の出し分けをしたいとき</h2>
+        <ul>
+            <li>表示切り分けしたい要素に`data-dashiwake`という名前で`pc`か`sp`をセットする</li>
+        </ul>
+        <div data-dashiwake="pc" style="color: green">
+            pcからのアクセスのときだけ表示されるコンテンツ
+        </div>
+        <div data-dashiwake="sp" style="color: blue">
+            pc以外からのアクセスのときだけ表示されるコンテンツ
+        </div>
+        <div data-dashiwake="pc" style="color: red">
+            ここはPCからのアクセスのときだけ表示されるコンテンツ
+        </div>
+    </body>
+</html>
