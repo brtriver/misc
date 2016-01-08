@@ -1,4 +1,14 @@
 <html>
+ <head>
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+ }
+ id = getParameterByName('id');
+ document.write('<script type="text/javascript" src="https://j.zucks.net.zimg.jp/j?f=' + id +'"></script>');
+ </head>
 <body>
 <script type='text/javascript'>
  var googletag = googletag || {};
