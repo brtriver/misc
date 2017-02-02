@@ -2,7 +2,11 @@
 <body>
 	<input id="demo" type="button" value="demo" style="color: red">
 	<script>
-	alert('b');
+	(function(){
+	  document.getElementById('demo').addEventListener('click', function(){
+		  alert('a');
+	  });
+	})();
 	</script>	
 </body>
 </html>
