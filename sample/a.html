@@ -1,10 +1,12 @@
 <html>
 <body>
 	<input id="demo" type="button" value="demo" style="color: red">
+	<div id="result"></div>
 	<script>
 	(function(){
 	  document.getElementById('demo').addEventListener('click', function(){
-		  console.log(window.DeviceOrientationEvent.alpha,window.DeviceOrientationEvent.beta,window.DeviceOrientationEvent.gamma);
+	  	  var html =window.DeviceOrientationEvent.alpha;
+         	   document.getElementById('result').innerHTML = html;
 	  });
 	})();
 	</script>	
